@@ -1,0 +1,16 @@
+Para instalar swing:
+
+	
+1-Open your "Eclipse 4.2" (Eclipse Juno).
+2-Go to "Help" tab.
+3-Click in "Install new Software..."
+4-A new window will appear, in the field "type or select a site" put: "http://dl.google.com/eclipse/inst/d2wbpro/latest/4.2" and press "Enter".
+5-Select all available updates and click "Next".
+6-Now just proceed the installation. Later you will need restart the Eclipse. Do that.
+
+Con el WindowBuilder lo mismo
+
+
+https://dl.bintray.com/zaunerc/p2/org.eclipse.windowbuilder.p2_site/latest/
+
+Luego de instalar el WB van a ver que abajo del codigo de cualquier archivo se habilita la vista design
