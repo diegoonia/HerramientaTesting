@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -90,73 +91,73 @@ public class VentanaPincipal extends JFrame implements ListSelectionListener {
 		JLabel lblTituloCantComent = new JLabel("Lineas de Comentario:");
 		lblTituloCantComent.setForeground(new Color(112, 128, 144));
 		lblTituloCantComent.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTituloCantComent.setBounds(540, 240, 190, 21);
+		lblTituloCantComent.setBounds(540, 230, 190, 21);
 		getContentPane().add(lblTituloCantComent);
 		
 		JLabel lblCantComent = new JLabel("-");
 		lblCantComent.setForeground(new Color(0, 0, 0));
 		lblCantComent.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCantComent.setBounds(700, 240, 190, 21);
+		lblCantComent.setBounds(700, 230, 190, 21);
 		getContentPane().add(lblCantComent);
 		
 		JLabel lblTituloPorcComent = new JLabel("Porcentaje comentarios:");
 		lblTituloPorcComent.setForeground(new Color(112, 128, 144));
 		lblTituloPorcComent.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTituloPorcComent.setBounds(540, 280, 190, 21);
+		lblTituloPorcComent.setBounds(540, 260, 190, 21);
 		getContentPane().add(lblTituloPorcComent);
 		
 		JLabel lblPorcComent = new JLabel("-");
 		lblPorcComent.setForeground(new Color(0, 0, 0));
 		lblPorcComent.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPorcComent.setBounds(700, 280, 190, 21);
+		lblPorcComent.setBounds(700, 260, 190, 21);
 		getContentPane().add(lblPorcComent);
 		
 		JLabel lblTituloCantIf = new JLabel("Cantidad de If:");
 		lblTituloCantIf.setForeground(new Color(112, 128, 144));
 		lblTituloCantIf.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTituloCantIf.setBounds(540, 320, 190, 21);
+		lblTituloCantIf.setBounds(540, 290, 190, 21);
 		getContentPane().add(lblTituloCantIf);
 		
 		JLabel lblCantIf = new JLabel("-");
 		lblCantIf.setForeground(new Color(0, 0, 0));
 		lblCantIf.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCantIf.setBounds(700, 320, 190, 21);
+		lblCantIf.setBounds(700, 290, 190, 21);
 		getContentPane().add(lblCantIf);
 		
 		JLabel lblTituloCantFor = new JLabel("Cantidad de For:");
 		lblTituloCantFor.setForeground(new Color(112, 128, 144));
 		lblTituloCantFor.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTituloCantFor.setBounds(540, 360, 190, 21);
+		lblTituloCantFor.setBounds(540, 320, 190, 21);
 		getContentPane().add(lblTituloCantFor);
 		
 		JLabel lblCantFor = new JLabel("-");
 		lblCantFor.setForeground(new Color(0, 0, 0));
 		lblCantFor.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCantFor.setBounds(700, 360, 190, 21);
+		lblCantFor.setBounds(700, 320, 190, 21);
 		getContentPane().add(lblCantFor);
 		
-		JLabel lblTituloCantWhile = new JLabel("Cantidad de For:");
+		JLabel lblTituloCantWhile = new JLabel("Cantidad de While:");
 		lblTituloCantWhile.setForeground(new Color(112, 128, 144));
 		lblTituloCantWhile.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTituloCantWhile.setBounds(540, 400, 190, 21);
+		lblTituloCantWhile.setBounds(540, 350, 190, 21);
 		getContentPane().add(lblTituloCantWhile);
 		
 		JLabel lblCantWhile = new JLabel("-");
 		lblCantWhile.setForeground(new Color(0, 0, 0));
 		lblCantWhile.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCantWhile.setBounds(700, 400, 190, 21);
+		lblCantWhile.setBounds(700, 350, 190, 21);
 		getContentPane().add(lblCantWhile);
 		
 		JLabel lblTituloComplej = new JLabel("Complejidad Ciclomatica:");
 		lblTituloComplej.setForeground(new Color(112, 128, 144));
 		lblTituloComplej.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTituloComplej.setBounds(540, 440, 190, 21);
+		lblTituloComplej.setBounds(540, 380, 190, 21);
 		getContentPane().add(lblTituloComplej);
 		
 		JLabel lblComplej = new JLabel("-");
 		lblComplej.setForeground(new Color(0, 0, 0));
 		lblComplej.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblComplej.setBounds(700, 440, 190, 21);
+		lblComplej.setBounds(700, 380, 190, 21);
 		getContentPane().add(lblComplej);
 		
 		ArrayList<String> arrayProyectos = new ArrayList<String>();
@@ -243,8 +244,6 @@ public class VentanaPincipal extends JFrame implements ListSelectionListener {
 		lblAnalisisDelMetodo.setBounds(534, 11, 190, 21);
 		getContentPane().add(lblAnalisisDelMetodo);
 		
-		
-		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -259,13 +258,15 @@ public class VentanaPincipal extends JFrame implements ListSelectionListener {
 					txtCodigo.append(rec.codigo.get(i) + "\n");
 				}
 				
+				DecimalFormat df = new DecimalFormat("#.##");
+				
 				lblCantLineas.setText( Integer.toString(rec.CantLineas) );
 				lblCantComent.setText( Integer.toString(rec.CantComent) );
 				lblCantIf.setText( Integer.toString(rec.CantIf) );
 				lblCantFor.setText( Integer.toString(rec.CantFor)  );
 				lblCantWhile.setText( Integer.toString(rec.CantWhile)  );
-				
-				lblPorcComent.setText( Float.toString(rec.porcComent) + " %");
+				lblComplej.setText( Integer.toString(rec.CompCicl) );
+				lblPorcComent.setText( (df.format(rec.porcComent)) + " %");
 				if( rec.porcComent < 10)
 				{
 					lblPorcComent.setForeground(new Color(200, 0, 0));

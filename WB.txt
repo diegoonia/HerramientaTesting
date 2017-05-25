@@ -14,3 +14,4 @@ Con el WindowBuilder lo mismo
 https://dl.bintray.com/zaunerc/p2/org.eclipse.windowbuilder.p2_site/latest/
 
 Luego de instalar el WB van a ver que abajo del codigo de cualquier archivo se habilita la vista design
+as

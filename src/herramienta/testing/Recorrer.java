@@ -3,6 +3,7 @@ package herramienta.testing;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
+import org.apache.commons.lang3.StringUtils;
 
 public class Recorrer {
 	public int CantIf;
@@ -10,6 +11,7 @@ public class Recorrer {
 	public int CantFor;
 	public int CantLineas;
 	public int CantWhile;
+	public int CompCicl;
 	public float porcComent;
 	public ArrayList<String> codigo = new ArrayList<String>();
 
@@ -25,6 +27,7 @@ public class Recorrer {
         }
 	}
 	
+
 	//Método para obtener todos los .java de un proyecto
 	public static void getAllJavaFiles(File path, ArrayList<String> clases, ArrayList<String> rutasClases) {
 		rutasClases.clear();
@@ -110,7 +113,8 @@ public class Recorrer {
 	// cantidad de lineas
 	public void analizarMetodo(String pathIn, String metodo)
 	{
-		CantIf=0; CantFor=0; CantLineas=0; CantComent=0; CantWhile=0;
+		CantIf=0; CantFor=0; CantLineas=0; CantComent=0; CantWhile=0; CompCicl =0;
+		int CantApCierre=0;
 		boolean flagComent = false;
 		String cadena;
 		String cadenaParcial;
@@ -134,19 +138,34 @@ public class Recorrer {
 				ContadorLlaves = 1;     //cuento la primer llave y empiezo a recorrer
 				CantLineas=1;
 				cadena = sc.nextLine();
+				
+
 				while(sc.hasNextLine() && ContadorLlaves>0)
 				{
+					
 					codigo.add(cadena);
 					if(cadena.contains("{"))
 						ContadorLlaves++;
+						
 					if(cadena.contains("}"))
 						ContadorLlaves--;
+					
 					if(cadena.contains("if"))
+					{
+						String[] a2 = cadena.split("&&");
 						CantIf++;
+					}
 					if(cadena.contains("for"))
+					{
+						String[] a3 = cadena.split("&&");
 						CantFor++;
+					}
+						
 					if(cadena.contains("while"))
+					{
+						String[] a4 = cadena.split("&&");
 						CantWhile++;
+					}
 					
 					if(cadena.contains("//"))
 						CantComent++;
@@ -164,10 +183,24 @@ public class Recorrer {
 							codigo.add(cadena);
 						}
 					}
+					
+					CompCicl += StringUtils.countMatches(cadena, "if (")
+							 + StringUtils.countMatches(cadena, "while (")
+							 + StringUtils.countMatches(cadena, "for (")
+							 + StringUtils.countMatches(cadena, " && ")
+							 + StringUtils.countMatches(cadena, " || ")
+							 + StringUtils.countMatches(cadena, " ? ")
+							 + StringUtils.countMatches(cadena, "case ")
+							 + StringUtils.countMatches(cadena, "catch (");
 											
 					CantLineas++;
 					cadena = sc.nextLine();
+					
+					if(ContadorLlaves==1)
+						break;
 				}
+				
+				CompCicl = CompCicl + 1;
 			}
 		}
 
