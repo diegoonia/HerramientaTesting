@@ -178,6 +178,12 @@ public class Recorrer {
 		fanOut = 0;
 		String cadena = null;
 		Scanner sc = null;
+		String met[] = metodo.split(" ");
+		String me;
+		if(met.length > 1)
+			 me = met[met.length-1];
+		else
+			me = met[0];
 		try{
 			sc = new Scanner(new File(clase));	
 		}
@@ -210,7 +216,7 @@ public class Recorrer {
 			}
 		}
 		for (String string : codigo) {
-			if(string.contains(metodo))
+			if(cadena.contains(me) && !string.contains(metodo))
 				fanOut++;
 		}
 		codigo.clear();
@@ -405,8 +411,12 @@ public class Recorrer {
 	    		for(int j = 0; j < operando.length; j++)
 	    		if(operando[j].length()!=0)
 	    		{
-	    			N2 += 1;
-	    			this.setOperandos.add(operandos[i]);
+	    			if(!operandos[i].contains("\\") && !operandos[i].contains("*/"))
+	    			{
+	    				N2 += 1;
+	    				this.setOperandos.add(operandos[i]);
+	    			}
+	    			
 	    		}
 	    		
 	    	}
